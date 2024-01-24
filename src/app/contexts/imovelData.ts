@@ -6,7 +6,7 @@ const ImovelDataContext = createContext<ImovelDataContextType>({
     setImovelData: () => { },
 });
 
-type ImovelData = {
+export type ImovelData = {
     valorImovel: number;
     entrada: number;
     taxas: number;
@@ -15,6 +15,10 @@ type ImovelData = {
     valorParcela: number
     valorInicialAluguel: number
     anoFinal: number
+    valorAluguel: number[]
+    patrimonioInvestimento: number
+    valorizaçãoDoImovel: number
+    saldoDevedor: number
 };
 
 export type ImovelDataContextType = {

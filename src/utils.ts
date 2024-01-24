@@ -9,7 +9,8 @@ export const formatterReal = (valor: string | number) => {
 };
 
 export const realParaNumero = (valor: string) => {
-    const valorLimpo = valor.replace(/\s?R\$\s?/, '').replace('.', '').replace(',', '.');
+    const valorSemSimbolo = valor.replace(/\s?R\$\s?/, '');
+    const valorLimpo = valorSemSimbolo.replace(/\./g, '').replace(',', '.');
     const valorNumerico = parseFloat(valorLimpo);
     return valorNumerico;
 };

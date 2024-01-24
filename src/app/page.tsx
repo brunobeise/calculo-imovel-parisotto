@@ -5,7 +5,7 @@ import logo from "../../public/logo.png";
 import { ReactNode, useState } from "react";
 import Financiamento from "./components/Financiamento";
 import { createContext } from "react";
-import ImovelDataContext from "./contexts/imovelData";
+import ImovelDataContext, { ImovelData } from "./contexts/imovelData";
 
 export default function Home() {
   const [context, setContext] = useState<"avista" | "financiamento">(
@@ -13,7 +13,7 @@ export default function Home() {
   );
 
   const ImovelDataProvider = ({ children }: { children: ReactNode }) => {
-    const [imovelData, setImovelData] = useState({
+    const [imovelData, setImovelData] = useState<ImovelData>({
       valorImovel: 180000,
       entrada: 36000,
       taxas: 4000,
@@ -22,6 +22,10 @@ export default function Home() {
       valorParcela: 763,
       valorInicialAluguel: 700,
       anoFinal: 6,
+      valorAluguel: [700, 756, 816.48, 881.79, 952.34, 1028.52],
+      patrimonioInvestimento: 0,
+      valorizaçãoDoImovel: 8,
+      saldoDevedor: 133211.89,
     });
 
     return (
