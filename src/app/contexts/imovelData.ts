@@ -18,6 +18,7 @@ export type ImovelData = {
     valorAluguel: number[]
     patrimonioInvestimento: number
     valorizaçãoDoImovel: number
+    valorImóvelValorizado: number
     saldoDevedor: number
 };
 

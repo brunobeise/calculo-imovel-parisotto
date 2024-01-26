@@ -8,28 +8,36 @@ import ImovelDataContext from "@/app/contexts/imovelData";
 export default function Financiamento() {
   const { imovelData, setImovelData } = useContext(ImovelDataContext);
 
-  // calcula a valorização do aluguel
-  useEffect(() => {
-    let valoresAluguelTemp: number[] = [];
+useEffect(() => {
 
-    for (let ano = 1; ano <= imovelData.anoFinal; ano++) {
-      let valorAluguel =
-        ano === 1
-          ? imovelData.valorInicialAluguel
-          : Number(
-              (
-                imovelData.valorInicialAluguel * Math.pow(1 + 0.08, ano - 1)
-              ).toFixed(2)
-            );
+  //calculo valotização aluguel
+  let valoresAluguelTemp : number[] = [];
 
-      valoresAluguelTemp.push(valorAluguel);
-    }
-    setImovelData({
-      ...imovelData,
-      valorAluguel: valoresAluguelTemp,
-    });
-  }, [imovelData.anoFinal, imovelData.valorInicialAluguel]);
+  for (let ano = 1; ano <= imovelData.anoFinal; ano++) {
+    let valorAluguel = ano === 1
+      ? imovelData.valorInicialAluguel
+      : Number((imovelData.valorInicialAluguel * Math.pow(1 + 0.08, ano - 1)).toFixed(2));
 
+    valoresAluguelTemp.push(valorAluguel);
+  }
+
+
+  //calculo valorização do
+  const valorImovelValorizado = Number(
+    (imovelData.valorImovel * Math.pow(1 + 0.08, imovelData.anoFinal)).toFixed(0)
+  );
+
+  setImovelData(prevState => ({
+    ...prevState,
+    valorAluguel: valoresAluguelTemp,
+    valorImóvelValorizado: valorImovelValorizado
+  }));
+
+}, [imovelData.anoFinal, imovelData.valorInicialAluguel, imovelData.valorImovel]);
+
+
+  console.log(imovelData);
+  
   return (
     <>
       <div className="grid grid-cols-12 px-10 gap-8 gap-y-5 justify-center">

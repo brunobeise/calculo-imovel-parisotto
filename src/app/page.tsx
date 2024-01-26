@@ -26,6 +26,7 @@ export default function Home() {
       patrimonioInvestimento: 0,
       valorizaçãoDoImovel: 8,
       saldoDevedor: 133211.89,
+      valorImóvelValorizado: 285637
     });
 
     return (

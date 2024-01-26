@@ -12,17 +12,7 @@ import { useContext, useEffect, useState } from "react";
 
 export default function Conclusão() {
   const { imovelData, setImovelData } = useContext(ImovelDataContext);
-  const [valorizaçãoImovel, setValorizaçãoImovel] = useState<string>("");
-
-  useEffect(() => {
-    const calc = Number(
-      (
-        imovelData.valorImovel * Math.pow(1 + 0.08, imovelData.anoFinal)
-      ).toFixed(0)
-    );
-    setValorizaçãoImovel(numeroParaReal(calc));
-  }, [imovelData.valorImovel, imovelData.anoFinal]);
-
+ 
   return (
     <div className="overflow-x-auto col-span-4 mb-10">
       <h2 className="text-xl text-center mb-2 ">Conclusão</h2>
@@ -40,7 +30,7 @@ export default function Conclusão() {
                 {numeroParaReal(imovelData.entrada + imovelData.taxas)}
               </TableCell>
               <TableCell>
-                {" "}
+    
                 {numeroParaReal(
                   imovelData.valorImovel -
                     (imovelData.entrada + imovelData.taxas)
@@ -63,7 +53,7 @@ export default function Conclusão() {
           </TableHead>
           <TableBody className="divide-y">
             <TableRow>
-              <TableCell>{valorizaçãoImovel}</TableCell>
+              <TableCell>{numeroParaReal(imovelData.valorImóvelValorizado)}</TableCell>
               <TableCell>
                 {numeroParaReal(imovelData.patrimonioInvestimento)}
               </TableCell>
@@ -81,11 +71,7 @@ export default function Conclusão() {
           <TableBody className="divide-y">
             <TableRow>
               <TableCell className="text-black font-bold">
-                {numeroParaReal(
-                  imovelData.valorImovel +
-                    imovelData.patrimonioInvestimento -
-                    imovelData.saldoDevedor
-                )}
+              {numeroParaReal( imovelData.valorImóvelValorizado + imovelData.patrimonioInvestimento - imovelData.saldoDevedor) }
               </TableCell>
               <TableCell>
                 {numeroParaReal(
@@ -98,7 +84,7 @@ export default function Conclusão() {
               </TableCell>
               <TableCell>
                 {(
-                  ((imovelData.valorImovel +
+                  ((imovelData.valorImóvelValorizado +
                     imovelData.patrimonioInvestimento -
                     imovelData.saldoDevedor) /
                     imovelData.saldoPessoal) *
